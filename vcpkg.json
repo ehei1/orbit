@@ -1,0 +1,8 @@
+{
+	"name": "mypackage",
+	"version-string" : "v1.0.2",
+	"dependencies" : [
+		"bzip2",
+		"qt5"
+	]
+}
