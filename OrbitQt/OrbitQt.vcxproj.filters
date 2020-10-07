@@ -214,14 +214,14 @@
     <CustomBuild Include="showincludesdialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\debug\moc_predefs.h.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\release\moc_predefs.h.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\debug\qteditorfactory.moc.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\release\qteditorfactory.moc.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\debug\qtpropertymanager.moc.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\release\qtpropertymanager.moc.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\debug\qttreepropertybrowser.moc.cbt" />
-    <CustomBuild Include="..\OrbitQt\GeneratedFiles\release\qttreepropertybrowser.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\debug\moc_predefs.h.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\release\moc_predefs.h.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\debug\qteditorfactory.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\release\qteditorfactory.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\debug\qtpropertymanager.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\release\qtpropertymanager.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\debug\qttreepropertybrowser.moc.cbt" />
+    <CustomBuild Include="..\OrbitQt\dummy\release\qttreepropertybrowser.moc.cbt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\debug\moc_licensedialog.cpp">
