@@ -149,3 +149,10 @@ external/minhook/bin/
 
 # vcpkg
 vcpkg_installed/
+
+# temporary files
+.vs/
+bin/
+OrbitQt/GeneratedFiles/
+OrbitQt/debug
+OrbitQt/release
