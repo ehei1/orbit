@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.props" Condition="Exists('..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -54,9 +55,23 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">orbit</TargetName>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IgnoreImportLibrary>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgEnabled>true</VcpkgEnabled>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+    <VcpkgManifestInstall>true</VcpkgManifestInstall>
+    <VcpkgConfiguration>Debug</VcpkgConfiguration>
+    <VcpkgAutoLink>true</VcpkgAutoLink>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgEnabled>true</VcpkgEnabled>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+    <VcpkgManifestInstall>true</VcpkgManifestInstall>
+    <VcpkgAutoLink>true</VcpkgAutoLink>
+    <VcpkgConfiguration>Release</VcpkgConfiguration>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;GeneratedFiles\release;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\;$(VcpkgInstalledDir)$(VcpkgTriplet)\include;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtWidgets;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtGui;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtANGLE;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtCore;GeneratedFiles\debug;$(VcpkgInstalledDir)$(VcpkgTriplet)\tools\qt5\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>..\intermediate\x64\OrbitQt\release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -77,8 +92,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmain.lib;shell32.lib;..\external\curl-7.52.1\lib\libcurl_imp.lib;..\external\glew-2.0.0\lib\Release\x64\glew32.lib;opengl32.lib;glu32.lib;-dbghelp;..\external\freetype-gl\x64\Release\freetype-gl.lib;..\external\freetype\lib\x64\freetype271.lib;..\bin\x64\release\OrbitCore.lib;..\bin\x64\release\OrbitGl.lib;..\bin\x64\release\OrbitAsm.lib;..\external\freeglut-2.8.1\lib\x64\freeglut_static.lib;..\external\minhook\lib\release\libMinHook.x64.lib;..\external\breakpad\src\client\windows\x64\Release\lib\crash_generation_client.lib;..\external\breakpad\src\client\windows\x64\Release\lib\common.lib;..\external\breakpad\src\client\windows\x64\Release\lib\exception_handler.lib;..\external\breakpad\src\client\windows\x64\Release\lib\processor_bits.lib;..\external\capstone\msvc\x64\Release\capstone.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;$(QTDIR)\lib;..\external\curl-7.52.1\lib;..\external\glew-1.13.0\lib\Release\x64;..\external\freetype-gl\x64\Release;..\external\freetype\lib\x64;..\bin\x64\release;..\external\freeglut-2.8.1\lib\x64;..\external\minhook\lib\release;..\external\breakpad\src\client\windows\x64\Release\lib;..\external\capstone\msvc\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lib\manual-link\qtmain.lib;shell32.lib;..\external\curl-7.52.1\lib\libcurl_imp.lib;..\external\glew-2.0.0\lib\Release\x64\glew32.lib;opengl32.lib;glu32.lib;-dbghelp;..\external\freetype-gl\x64\Release\freetype-gl.lib;..\external\freetype\lib\x64\freetype271.lib;..\bin\x64\release\OrbitCore.lib;..\bin\x64\release\OrbitGl.lib;..\bin\x64\release\OrbitAsm.lib;..\external\freeglut-2.8.1\lib\x64\freeglut_static.lib;..\external\minhook\lib\release\libMinHook.x64.lib;..\external\breakpad\src\client\windows\x64\Release\lib\crash_generation_client.lib;..\external\breakpad\src\client\windows\x64\Release\lib\common.lib;..\external\breakpad\src\client\windows\x64\Release\lib\exception_handler.lib;..\external\breakpad\src\client\windows\x64\Release\lib\processor_bits.lib;..\external\capstone\msvc\x64\Release\capstone.lib;lib\Qt5Widgets.lib;lib\Qt5Gui.lib;lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VcpkginstalledDir)$(VcpkgTriplet);..\external\curl-7.52.1\lib;..\external\glew-1.13.0\lib\Release\x64;..\external\freetype-gl\x64\Release;..\external\freetype\lib\x64;..\bin\x64\release;..\external\freeglut-2.8.1\lib\x64;..\external\minhook\lib\release;..\external\breakpad\src\client\windows\x64\Release\lib;..\external\capstone\msvc\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/debug /opt:ref "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -99,10 +114,28 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;ORBIT_PROFILER;UNICODE;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\brotlicommon.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\brotlidec.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\bz2.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\freetype.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\harfbuzz.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\icuin67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\icuuc67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\icudt67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\libpng16.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\pcre2-16.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\zlib1.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\zstd.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\Qt5Core.dll $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\Qt5Gui.dll $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\bin\Qt5Widgets.dll $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\plugins\platforms\qwindows.dll $(OutDir)platforms\ /D /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;GeneratedFiles\debug;$(QTDIR)\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\;$(VcpkgInstalledDir)$(VcpkgTriplet)\include;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtWidgets;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtGui;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtANGLE;$(VcpkgInstalledDir)$(VcpkgTriplet)\include\QtCore;GeneratedFiles\debug;$(VcpkgInstalledDir)$(VcpkgTriplet)\tools\qt5\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>..\intermediate\x64\OrbitQt\debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -121,8 +154,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;..\external\curl-7.52.1\lib\libcurl_imp.lib;..\external\glew-2.0.0\lib\Release\x64\glew32.lib;opengl32.lib;glu32.lib;-dbghelp;..\external\freetype-gl\x64\Release\freetype-gl.lib;..\external\freetype\lib\x64\freetype271.lib;..\bin\x64\debug\OrbitCore.lib;..\bin\x64\debug\OrbitGl.lib;..\bin\x64\debug\OrbitAsm.lib;..\external\freeglut-2.8.1\lib\x64\debug\freeglut_static.lib;..\external\minhook\lib\debug\libMinHook.x64.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\crash_generation_client.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\common.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\exception_handler.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\processor_bits.lib;..\external\capstone\msvc\x64\Release\capstone.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;$(QTDIR)\lib;..\external\curl-7.52.1\lib;..\external\glew-2.0.0\lib\Release\x64;..\external\freetype-gl\x64\Release;..\external\freetype\lib\x64;..\bin\x64\debug;..\external\freeglut-2.8.1\lib\x64\debug;..\external\minhook\lib\debug;..\external\breakpad\src\client\windows\x64\Debug\lib;..\external\capstone\msvc\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lib\manual-link\qtmaind.lib;shell32.lib;..\external\curl-7.52.1\lib\libcurl_imp.lib;..\external\glew-2.0.0\lib\Release\x64\glew32.lib;opengl32.lib;glu32.lib;-dbghelp;..\external\freetype-gl\x64\Release\freetype-gl.lib;..\external\freetype\lib\x64\freetype271.lib;..\bin\x64\debug\OrbitCore.lib;..\bin\x64\debug\OrbitGl.lib;..\bin\x64\debug\OrbitAsm.lib;..\external\freeglut-2.8.1\lib\x64\debug\freeglut_static.lib;..\external\minhook\lib\debug\libMinHook.x64.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\crash_generation_client.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\common.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\exception_handler.lib;..\external\breakpad\src\client\windows\x64\Debug\lib\processor_bits.lib;..\external\capstone\msvc\x64\Release\capstone.lib;lib\Qt5Widgetsd.lib;lib\Qt5Guid.lib;lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VcpkginstalledDir)$(VcpkgTriplet)\$(Configuration);..\external\curl-7.52.1\lib;..\external\glew-2.0.0\lib\Release\x64;..\external\freetype-gl\x64\Release;..\external\freetype\lib\x64;..\bin\x64\debug;..\external\freeglut-2.8.1\lib\x64\debug;..\external\minhook\lib\debug;..\external\breakpad\src\client\windows\x64\Debug\lib;..\external\capstone\msvc\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,6 +174,24 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;ORBIT_PROFILER;UNICODE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\brotlicommon.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\brotlidec.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\bz2d.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\freetyped.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\harfbuzz.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\icuind67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\icuucd67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\icudtd67.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\libpng16d.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\pcre2-16d.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\zlibd1.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\zstdd.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\Qt5Cored.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\Qt5Guid.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\bin\Qt5Widgetsd.* $(OutDir) /D /Y
+xcopy $(VcpkgInstalledDir)$(VcpkgTriplet)\$(Configuration)\plugins\platforms\qwindowsd.* $(OutDir)platforms\ /D /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="licensedialog.cpp" />
@@ -813,6 +864,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="qtpropertybrowser\images\cursor-arrow.png" />
     <None Include="qtpropertybrowser\images\cursor-busy.png" />
     <None Include="qtpropertybrowser\images\cursor-closedhand.png" />
@@ -851,5 +903,14 @@
     <ResourceCompile Include="OrbitQt.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.targets" Condition="Exists('..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.props'))" />
+    <Error Condition="!Exists('..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.study.orbit.ehei.vcpkg.1.0.0\build\native\vcpkg.D.study.orbit.ehei.vcpkg.targets'))" />
+  </Target>
 </Project>
